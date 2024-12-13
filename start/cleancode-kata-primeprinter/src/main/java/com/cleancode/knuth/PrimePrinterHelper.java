@@ -2,10 +2,10 @@ package com.cleancode.knuth;
 
 public class PrimePrinterHelper {
 
-    public void generatePrimes(int maxPrimes, int rowsPerPage, int columnsPerPage, int maxOrder, int[] primes, int[] multiples) {
+    public void generatePrimes(int maxPrimes, int rowsPerPage, int columnsPerPage, int maxOrder, int[] numbers, int[] multiples) {
         int j = 1;
         int k = 1;
-        primes[1] = 2;
+        numbers[1] = 2;
         int ord = 2;
         int square = 9;
 
@@ -14,31 +14,25 @@ public class PrimePrinterHelper {
                 j += 2;
                 if (j == square) {
                     ord++;
-                    square = primes[ord] * primes[ord];
+                    square = numbers[ord] * numbers[ord];
                     multiples[ord - 1] = j;
                 }
                 int n = 2;
-                boolean jPrime = true;
-                while (n < ord && jPrime) {
-                    while (multiples[n] < j)
-                        multiples[n] += primes[n] + primes[n];
-                    if (multiples[n] == j)
-                        jPrime = false;
+                boolean isPrime = true;
+                while (n < ord && isPrime) {
+                    while (multiples[n] < j) {
+                        multiples[n] += numbers[n] + numbers[n];
+                    }
+                    if (multiples[n] == j) {
+                        isPrime = false;
+                    }
                     n++;
                 }
-                if (jPrime) {
+                if (isPrime) {
                     k++;
-                    primes[k] = j;
+                    numbers[k] = j;
                 }
-            } while (!isPrime(j, multiples, ord));
+            } while (j < maxPrimes);
         }
-    }
-
-    private boolean isPrime(int j, int[] multiples, int ord) {
-        for (int n = 2; n < ord; n++) {
-            if (multiples[n] == j)
-                return false;
-        }
-        return true;
     }
 }
