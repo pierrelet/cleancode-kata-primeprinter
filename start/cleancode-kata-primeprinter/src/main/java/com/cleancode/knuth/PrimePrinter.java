@@ -18,11 +18,11 @@ public class PrimePrinter {
 
         // Création d'une instance de PrimePrinter pour imprimer les résultats
         PrimePrinter printer = new PrimePrinter();
-        printer.printPrimes(primes, MAX_PRIMES);
+        printer.printPrimes(primes, MAX_PRIMES);  // Appel de la méthode printPrimes pour afficher les nombres premiers
     }
 
+    // Nouvelle méthode printPrimes qui prend en paramètres le tableau des nombres premiers et leur nombre
     public void printPrimes(int[] primes, int maxPrimes) {
-        // Logique pour afficher les nombres premiers par page
         int pageNumber = 1;
         int pageOffset = 1;
 
